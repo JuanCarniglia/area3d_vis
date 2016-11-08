@@ -24,9 +24,12 @@ function Area3DVisProvider(Private) {
       defaults: {
         graphSelect: 'surface',
         showPerspective: true,
-        showGrid: false,
+        showGrid: true,
         showShadow: false,
-        keepAspectRatio: true
+        keepAspectRatio: true,
+        xLabel: 'X',
+        yLabel: 'Y',
+        zLabel: 'Z'
       },
       editor: require('plugins/area3d_vis/area3d_vis_params.html')
     },
@@ -34,9 +37,10 @@ function Area3DVisProvider(Private) {
       {
         group: 'metrics',
         name: 'metric',
-        title: 'Metric',
+        title: 'Metric (Z Dimension)',
         min: 1,
         max: 2,
+        aggFilter: ['count', 'sum', 'min', 'max', 'avg'],
         defaults: [
           { type: 'count', schema: 'metric' }
         ]
@@ -44,12 +48,28 @@ function Area3DVisProvider(Private) {
       {
         group: 'buckets',
         name: 'bucket',
-        title: 'X-Dimension'
+        title: 'X Dimension',
+        aggFilter: ['terms',
+          'significant_terms',
+          'filters',
+          'date_range',
+          'histogram',
+          'date_histogram',
+          'range'
+        ]
       },
       {
         group: 'buckets',
         name: 'split',
-        title: 'Y-Dimension'
+        title: 'Y Dimension',
+        aggFilter: ['terms',
+          'significant_terms',
+          'filters',
+          'date_range',
+          'histogram',
+          'date_histogram',
+          'range'
+        ]
       }
     ])
   });

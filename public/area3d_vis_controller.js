@@ -3,10 +3,9 @@ import uiModules from 'ui/modules';
 import $ from 'jquery';
 const module = uiModules.get('kibana/area3d_vis', ['kibana']);
 
-import vis3D from 'plugins/area3d_vis/vendor/vis';
+import vis3D from 'vis'; //Load vis.js from node_modules
 
 module.controller('KbnArea3DVisController', function ($scope, $element, Private) {
-  //const tabifyAggResponse = Private(AggResponseTabifyTabifyProvider);
 
   let rootElement = $element;
 
@@ -18,22 +17,27 @@ module.controller('KbnArea3DVisController', function ($scope, $element, Private)
     if (resp) {
       const vis = $scope.vis;
 
-      // Create and populate a data table.
       data = new vis3D.DataSet();
-      // create some nice look ing data with sin/cos
       var counter = 0;
+      let height = 600;
+      let width = 600;
       let x = 0;
       let y = 0;
       let z = 0;
+      let cols = 0;
+      let rows = 0;
 
+      // Go from Elasticsearch resp object to vis.js Dataset
       _.map(resp.aggregations, function (xElementRoot) {
         if (xElementRoot !== null) {
           _.map(xElementRoot.buckets, function (xElement) {
             if (xElement !== null) {
               x = parseInt(xElement.key);
+              cols++;
               _.map(xElement[3].buckets, function (yElementBucket) {
 
                 y = parseInt(yElementBucket.key);
+                rows++;
 
                 if (yElementBucket.hasOwnProperty('1')) {
                   z = parseInt(yElementBucket[1].value);
@@ -54,19 +58,25 @@ module.controller('KbnArea3DVisController', function ($scope, $element, Private)
         }
       });
 
-
+      // Set Graphics Type
       let graphType = vis.params.graphSelect !== null ? vis.params.graphSelect.id : 'surface';
 
       // specify options
       var options = {
-        width: '600px',
-        height: '600px',
+        width: width + 'px',
+        height: height + 'px',
         style: graphType,
+        xBarWidth: 5,
+        yBarWidth: 5,
         showPerspective: vis.params.showPerspective,
         showGrid: vis.params.showGrid,
         showShadow: vis.params.showShadow,
         keepAspectRatio: vis.params.keepAspectRatio,
-        verticalRatio: 0.5
+        verticalRatio: 0.5,
+        xLabel: vis.params.xLabel !== null ? vis.params.xLabel : 'X',
+        yLabel: vis.params.yLabel !== null ? vis.params.yLabel : 'Y',
+        zLabel: vis.params.zLabel !== null ? vis.params.zLabel : 'Z',
+        legendLabel: 'This is a legend'
       };
 
       // Instantiate our graph object.

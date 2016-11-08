@@ -51,7 +51,10 @@ uiModules.get('kibana/area3d_vis')
           'vis.params.showPerspective',
           'vis.params.showGrid',
           'vis.params.showShadow',
-          'vis.params.keepAspectRatio'
+          'vis.params.keepAspectRatio',
+          'vis.params.xLabel',
+          'vis.params.yLabel',
+          'vis.params.zLabel'
         ], function () {
           if (!$scope.vis) return;
         });

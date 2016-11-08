@@ -9,18 +9,26 @@ module.controller('KbnArea3DVisController', function ($scope, $element, Private)
 
   let rootElement = $element;
 
-  let data = null;
   let graph = null;
+  let width;
+  let height;
+  let data = new vis3D.DataSet();
+  let margin = {
+    top: 10,
+    right: 10,
+    bottom: 10,
+    left: 10
+  };
 
   $scope.$watchMulti(['esResponse', 'vis.params'], function ([resp]) {
 
     if (resp) {
       const vis = $scope.vis;
+      let counter = 0;
 
-      data = new vis3D.DataSet();
-      var counter = 0;
-      let height = 600;
-      let width = 600;
+      width = $(rootElement).width() - margin.left - margin.right;
+      height = $(rootElement).height() - margin.top - margin.bottom;
+
       let x = 0;
       let y = 0;
       let z = 0;
@@ -82,6 +90,31 @@ module.controller('KbnArea3DVisController', function ($scope, $element, Private)
       // Instantiate our graph object.
       graph = new vis3D.Graph3d(rootElement[0], data, options);
 
+    }
+  });
+
+  $scope.$watch(function () {
+    let element = $(rootElement);
+
+    return [element.width(), element.height()].join('x');
+  }, function (resp) {
+
+    let element = $(rootElement);
+    let height = element.height();
+    let width = element.width();
+
+    if (width < 200 || height < 200) {
+      // Too small a container
+
+    } else {
+      if (data && graph) {
+
+        width = width - margin.left - margin.right;
+        height = height - margin.top - margin.bottom;
+
+        graph.setSize(width + 'px', height + 'px');
+        graph.redraw();
+      }
     }
   });
 });

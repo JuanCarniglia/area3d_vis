@@ -1,5 +1,6 @@
 {
   "name": "area3d_vis",
+  "version": "kibana",
   "authors": [
     "Juan Carniglia <juan.carniglia@gmail.com>"
   ],

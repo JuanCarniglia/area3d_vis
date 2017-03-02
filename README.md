@@ -1,7 +1,7 @@
 # area3d_vis
-3D Graph Visualization for Kibana 5!
+3D Graph Visualization for Kibana 5 and 6.0.0-alpha1!
 
-This is the first version of a 3D Graph Visualization plugin for Kibana 5.0.
+This is the first version of a 3D Graph Visualization plugin for Kibana 5.0 / 6.0.0-alpha1.
 
 The idea behind this visualization is to add a new interesting Graph feature, to the current Kibana series of 
 charts and metrics, to show 3D data.

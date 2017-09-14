@@ -21,6 +21,8 @@ Here are some screenshots of how it's coming out. I hope you like it!
 The visualization needs one Metric (Count, Avg, Sum, Max, Min) which will be the Z value, 
 and two Aggregators (X, Y).
 
+The X and Y Aggregations should be Terms aggregations (in the example, over the property xposition and yposition correspondingly).
+
 In this example I'm plotting the performance indicators of an imaginary, solar panel array.
 
 You need to install first Vis.js !
@@ -33,6 +35,17 @@ git clone https://github.com/JuanCarniglia/area3d_vis
 cd area3d_vis
 npm install
 ```
+
+Actually all you need is Vis, so you can just:
+```
+npm install vis
+```
+
+On the test_data folder, there are scripts to create an Index, and to input some fake data into in, as in these examples.
+
+- make.bat (Deletes and Creates an index called "solarpanels" with some mapping)
+- solarpanels_data.bat (Adds some data)
+
 
 
 

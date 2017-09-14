@@ -4,14 +4,16 @@ import 'ui/agg_table/agg_table_group';
 import 'plugins/area3d_vis/area3d_vis.less';
 import 'plugins/area3d_vis/area3d_vis_controller';
 import 'plugins/area3d_vis/area3d_vis_params';
-import TemplateVisTypeTemplateVisTypeProvider from 'ui/template_vis_type/template_vis_type';
-import VisSchemasProvider from 'ui/vis/schemas';
+import { TemplateVisTypeProvider } from 'ui/template_vis_type/template_vis_type';
+import { VisSchemasProvider } from 'ui/vis/schemas';
 import area3dVisTemplate from 'plugins/area3d_vis/area3d_vis.html';
 
-require('ui/registry/vis_types').register(Area3DVisProvider);
+import { VisTypesRegistryProvider } from 'ui/registry/vis_types';
+
+VisTypesRegistryProvider.register(Area3DVisProvider);
 
 function Area3DVisProvider(Private) {
-  const TemplateVisType = Private(TemplateVisTypeTemplateVisTypeProvider);
+  const TemplateVisType = Private(TemplateVisTypeProvider);
   const Schemas = Private(VisSchemasProvider);
 
   return new TemplateVisType({

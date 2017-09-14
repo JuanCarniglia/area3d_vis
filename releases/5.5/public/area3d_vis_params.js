@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import uiModules from 'ui/modules';
+import { uiModules } from 'ui/modules';
 import area3dVisParamsTemplate from 'plugins/area3d_vis/area3d_vis_params.html';
 
 uiModules.get('kibana/area3d_vis')

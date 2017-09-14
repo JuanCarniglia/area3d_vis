@@ -1,0 +1,27 @@
+{
+    "mappings": {
+        "item": {
+            "properties": {
+                "energy_expenditure": {
+                    "type": "long"
+                },
+                "last_avg": {
+                    "type": "long"
+                },
+                "value": {
+                    "type": "long"
+                },
+                "working_days": {
+                    "type": "long"
+                },
+                "xposition": {
+                    "type": "long"
+                },
+                "yposition": {
+                    "type": "long"
+                }
+            }
+
+        }
+    }
+}
